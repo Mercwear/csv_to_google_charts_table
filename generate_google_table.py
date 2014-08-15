@@ -1,11 +1,12 @@
+# Import the newere version of the print fuction so the sep argument will work when formatting my strings
 from __future__ import print_function
 import csv
 import sys
 
-# File that will be generated
+# File that will be generated I want this to be a command line argument soon
 out_file = open('Google Chart Table.txt', 'w')
 
-# Name and location of the CSV file
+# Name and location of the CSV file I want this to be a command line argument soon
 in_file  = open('in.csv', "rb")
 
 # Import the csv file
@@ -15,7 +16,7 @@ reader = csv.reader(in_file)
 col_titles = reader.next()
 
 
-# Store the first part of the google required code in a multi line string
+# Store the first part of the google charts code in a multi line string
 google_chart_code = """
 <script type="text/javascript" src="https://www.google.com/jsapi"></script>
 
@@ -31,6 +32,8 @@ google.load('visualization', '1', {packages:['table']});
 
         var data = new google.visualization.DataTable();
 """
+
+# Store the second part of the google charts code in a multi line string
 google_chart_code_bottom = """
 ]);
 
@@ -102,10 +105,10 @@ for row in reader:
 # Write the last bit of Google chart code to the output file
 out_file.write(google_chart_code_bottom)
 
-# Gracefully close the csv file
+# Close the csv file
 in_file.close()
 
-# Cose the output file
+# Close the output file
 out_file.close()
 
 
